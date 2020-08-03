@@ -1,0 +1,14 @@
+name: Validation for Dockerfile
+on: [pull_request]
+jobs:
+  validation:
+    name: Validate Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: hadolint
+        uses: reviewdog/action-hadolint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
